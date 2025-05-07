@@ -18,8 +18,7 @@ const Home = ({isLoggedIn, setIsLoggedIn, name, email }) =>{
 
             }
             //fetch user data
-            try {
-                const response = await axios.get('/api/user')
+                axios.get('/api/user')
                 .then ((response) =>{
                     setUser(response.data); // sets user data
                     setIsLoaded(true);
@@ -28,16 +27,14 @@ const Home = ({isLoggedIn, setIsLoggedIn, name, email }) =>{
                 .catch ((error) => {
                     console.error('There was an error while fetching your user data', error);
                     setIsLoaded(true); // incase of an error, still mark as loaded     
-                });
-
-                }, [isLoggedIn, navigate]; // re-run the effect if the user logs in or out
+                }); [isLoggedIn, navigate]; // re-run the effect if the user logs in or out
 
             return (
-                
+
             )
 
-            );
+});
             
-    };
+}
 
     export default Home;
