@@ -30,6 +30,31 @@ const Home = ({isLoggedIn, setIsLoggedIn, name, email }) =>{
                 }); [isLoggedIn, navigate]; // re-run the effect if the user logs in or out
 
             return (
+                <div>
+                    <AppNavbar
+                    isLoggedIn={isLoggedIn}
+                    setIsLoggedIn={setIsLoggedIn}
+                    name={name}
+                    email={email}
+                                        
+                    />
+
+                    <div className="container" mx='auto' p-4>
+                        <h1 className = "text-2x1  font-bold mb-4"> Welcome to Tmeet App</h1>
+
+                        {!isLoaded ?(
+                            <p> Loading User Data...</p> // if the user data is not loaded, display a loading message
+                        ):(
+                            user.name?(
+                                <div>
+                                    <p> Welcome, {user.name}!</p>
+                                    <p> {user.email}</p>
+                                    </div>
+                            )
+                        )}
+                        
+                    </div>
+                </div>
 
             )
 
