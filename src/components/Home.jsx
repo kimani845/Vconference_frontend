@@ -5,19 +5,24 @@ import AppNavbar from './AppNavbar';
 import { useNavigate } from 'react-router-dom';
 
 const Home = ({isLoggedIn, setIsLoggedIn, name, email }) =>{
-    const [user, setUser] = useState({});
-    let navigate = useNavigate();
-    const [isLoaded, setIsLoaded] = useState(false);
+    const [user, setUser] = useState({}); // Holds user data
+    const [isLoaded, setIsLoaded] = useState(false); // check is the user is loaded
+    let navigate = useNavigate(); // This is the navigation Hook
 
-    //  Get user data from API
-    useEffect(() =>{
-        axios.get('http://localhost:3001/api/user')
-        .then(response =>{
-            setUser(response.data);
-            setIsLoaded(true);
-        )
-        }
+
+    // Get user Data on the component mount
+    useEffect (() =>{
+        const getUserData = async () =>{
+            try {
+                const response = await axios.get('/api/user');
+                setUser(response.data);
+                setIsLoaded(true);
+                } catch (error) {
+                    console.error(error);
+                    } finally {
+                        setIsLoaded(true);
+                        }
+                        
+            }
+        });
     }
-
-
-}
