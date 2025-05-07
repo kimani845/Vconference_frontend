@@ -50,8 +50,16 @@ const Home = ({isLoggedIn, setIsLoggedIn, name, email }) =>{
                                     <p> Welcome, {user.name}!</p>
                                     <p> {user.email}</p>
                                     </div>
+                            ):(
+                                <p> User could not be loaded</p> // Error handling if data doesn't exist
                             )
                         )}
+                        <div classname = "mt-4">
+                            <Link to = "/create-meeting" className = "bg-blue-500 text-white px-4 px-2 rounded">
+                            Create meeting
+                            </Link>
+
+                        </div>
                         
                     </div>
                 </div>
@@ -60,6 +68,6 @@ const Home = ({isLoggedIn, setIsLoggedIn, name, email }) =>{
 
 });
             
-}
+};
 
     export default Home;
