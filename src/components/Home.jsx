@@ -27,11 +27,13 @@ const Home = ({isLoggedIn, setIsLoggedIn, name, email }) =>{
 
                 })                
                 } catch (error) {
-                    console.error(error);
+                    console.error('There was an error while fetching your data', error);
                     } finally {
-                        setIsLoaded(true);
+                        setIsLoaded(true); // incase of an error, still mark as loaded
                         }
                         
             }
         });
     }
+
+    export default Home;
