@@ -27,7 +27,7 @@ const Home = ({isLoggedIn, setIsLoggedIn, name, email }) =>{
 
                 })                
                 } catch (error) {
-                    console.error('There was an error while fetching your data', error);
+                    console.error('There was an error while fetching your user data', error);
                     } finally {
                         setIsLoaded(true); // incase of an error, still mark as loaded
                         }
