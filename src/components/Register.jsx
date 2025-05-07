@@ -14,4 +14,4 @@ const registerUser = async (req, res) =>{
 
 }
 
-export {registerUser};
+export default registerUser;
