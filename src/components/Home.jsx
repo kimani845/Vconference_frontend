@@ -20,9 +20,12 @@ const Home = ({isLoggedIn, setIsLoggedIn, name, email }) =>{
             }
             //fetch user data
             try {
-                const response = await axios.get('/api/user');
-                setUser(response.data);
-                setIsLoaded(true);
+                const response = await axios.get('/api/user')
+                .then ((response) =>{
+                    setUser(response.data); // sets user data
+                    setIsLoaded(true);
+
+                })                
                 } catch (error) {
                     console.error(error);
                     } finally {
