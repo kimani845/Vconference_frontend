@@ -13,6 +13,12 @@ const Home = ({isLoggedIn, setIsLoggedIn, name, email }) =>{
     // Get user Data on the component mount
     useEffect (() =>{
         const getUserData = async () =>{
+            if (!isLoggedIn){
+                navigate ('/login'); // if a user is not logged in, they are directed to the login page
+                return
+
+            }
+            //fetch user data
             try {
                 const response = await axios.get('/api/user');
                 setUser(response.data);
