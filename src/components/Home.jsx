@@ -12,7 +12,6 @@ const Home = ({isLoggedIn, setIsLoggedIn, name, email }) =>{
 
     // Get user Data on the component mount
     useEffect (() =>{
-        const getUserData = async () =>{
             if (!isLoggedIn){
                 navigate ('/login'); // if a user is not logged in, they are directed to the login page
                 return
@@ -25,15 +24,20 @@ const Home = ({isLoggedIn, setIsLoggedIn, name, email }) =>{
                     setUser(response.data); // sets user data
                     setIsLoaded(true);
 
-                })                
-                } catch (error) {
+                })  
+                .catch ((error) => {
                     console.error('There was an error while fetching your user data', error);
-                    } finally {
-                        setIsLoaded(true); // incase of an error, still mark as loaded
-                        }
-                        
-            }
-        });
-    }
+                    setIsLoaded(true); // incase of an error, still mark as loaded     
+                });
+
+                }, [isLoggedIn, navigate]; // re-run the effect if the user logs in or out
+
+            return (
+                
+            )
+
+            );
+            
+    };
 
     export default Home;
