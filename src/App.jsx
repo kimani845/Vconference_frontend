@@ -51,7 +51,8 @@ const App = () => {
                     
                     }
                 />
-                        
+                
+
             <Route path = "/Register" element = {
                     <Register
                         isLoggedIn = {isLoggedIn} 
