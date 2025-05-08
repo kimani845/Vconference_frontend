@@ -68,32 +68,36 @@ export default function Login({ setIsLoggedIn, setTooken, setName }) {
 
         {/* Password Field */}
         <div className="mb-6 relative">
-            <label htmlFor="password"  className="block font-medium text-gray-900 mb-1">
-            {/* <Typography variant="small" className="mb-2 block font-medium text-gray-900"> */}
-                Password  <span className="text-red-500">*</span>
-
-            {/* </Typography> */}
+        <label htmlFor="password" 
+        className="block text-sm font-normal text-gray-700">
+                Password  
             </label>
+            <div className="mt-1 relative">
             <Input
-            // label="Password" 
-            id="password"
+            id="Password" 
+            name="password"
             type={passwordShown ? "text" : "password"}
+            autoComplete='current-password'
+            // onChange={(e) => setPassword(e.target.value)}
+            placeholder="********" 
+            required
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            placeholder="********" 
-            // required
-            className='pr-10'
+            onBlur={() => handleBlur("password")}
+            className="block w-full appearance-none placeholder:text-xs rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-neutral-950 focus:outline-none sm:text-sm"
             />
+        </div>
+        
           {/*  Password toggle button  */}
             <button
             type="button"
-            className="absolute right-3 top-11 text-gray-500"
+            className="absolute top-6 right-0 pr-3 flex items-center cursor-pointer justify-center"
             onClick={togglePasswordVisibility}
             >
             {passwordShown ? (
-                <EyeSlashIcon className="w-5 h-5" />
+                <EyeSlashIcon className="w-6 h-7" />
             ) : (
-                <EyeIcon className="w-5 h-5" />
+                <EyeIcon className="w-6 h-7" />
             )}
             </button>
         </div>
