@@ -34,11 +34,11 @@ export default function Login({ setIsLoggedIn, setTooken, setName }) {
 };
 
     return (
-    <section className="flex items-center justify-center min-h-screen bg-gray-100 px-4">
+    <section className="flex h-screen items-center justify-center">
 
         <form 
         onSubmit={handleSubmit} 
-        className="bg-white shadow-md rounded-x1 p-8 w-full max-w-md"
+        className="bg-white shadow-md rounded-x1 p-8 w-full max-w-md col-md-12"
         >
         <Typography variant="h3" color="blue-gray-900" className="mb-2 text-center">
             Sign In
