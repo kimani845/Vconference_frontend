@@ -3,7 +3,7 @@
 //  @param {String} email
 //  @param {String} password
 //  @param {String} confirmPassword
-function resetPassword(email, password, confirmPassword) {
+function ResetPassword(email, password, confirmPassword) {
     //  Check if the email is valid
     if (!validateEmail(email)) {
         return false;
@@ -16,4 +16,4 @@ function resetPassword(email, password, confirmPassword) {
             //  This is a placeholder, you should implement the actual logic to reset the password
         }
 
-export default resetPassword;
+export default ResetPassword;

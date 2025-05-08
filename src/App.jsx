@@ -1,10 +1,11 @@
 import { useState } from 'react'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+// import ReactDOM from "react-dom/client";
+import { BrowserRouter , Route, Routes } from 'react-router-dom';
 import AppNavbar from './components/AppNavbar';
 import Home from './components/Home';
 import Register from './components/Register';
 import Profile from './components/Profile';
-import login from './components/Login';
+import Login from './components/Login';
 import ForgotPassword from './components/ForgotPassword';
 import ResetPassword from './components/ResetPassword';
 import { ToastContainer } from 'react-toastify'; //  using react-toastify
@@ -14,89 +15,112 @@ import './index.css';
 
 
 const App = () => {
-    const[IsLoggedIn, setIsLoggedIn] = useState(false);
+    const[isLoggedIn, setIsLoggedIn] = useState(false);
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [token, setToken] = useState('');
 
+// export default App(){
+
     return (
         <div className = "md:h-screen bg-purple-100">
-            <Router>
+        <BrowserRouter>
             <ToastContainer/>
-                <Navbar
-                IsLoggedIn = {IsLoggedIn} 
+                <AppNavbar
+                isLoggedIn = {isLoggedIn} 
                 setIsLoggedIn = {setIsLoggedIn} 
-                name = {name} 
                 setName = {setName}
-                email = {email} 
                 setEmail = {setEmail} 
                 token = {token} 
                 setToken = {setToken}
                 />
 
-                <Routes>
+            <Routes>
 
-                    <Route path = "/"element = {
-                        <Home 
-                            isLoggedIn = {IsLoggedIn}
+                <Route
+                    path = "/"
+                    element = {
+                    <Home 
+                            isLoggedIn = {isLoggedIn}
                             setIsLoggedIn = {setIsLoggedIn}
-                    />
-                    }/>
+                            setName = {setName}
+                            setEmail = {setEmail}
+                            
+                        />
+                    
+                    }
+                />
                         
-                    <Route path = "/register" element = {
-                        <Register
-                        IsLoggedIn = {IsLoggedIn} 
+            <Route path = "/Register" element = {
+                    <Register
+                        isLoggedIn = {isLoggedIn} 
                         setIsLoggedIn = {setIsLoggedIn} 
                         setName = {setName} 
                         setEmail = {setEmail} 
                         setPassword = {setPassword} 
                         setToken = {setToken}/>
                         
-                        }/>
+                }    
+            />
             
-                    <Route path = "/login" element = {
-                        <Login 
-                        IsLoggedIn = {IsLoggedIn}
+            <Route path = "/Login" element = {
+                    <Login
+                        isLoggedIn = {isLoggedIn}
                         setIsLoggedIn = {setIsLoggedIn} 
                         setName = {setName} 
                         setEmail = {setEmail} 
                         setPassword = {setPassword}
-                        setToken = {setToken}/>
-                    }/>
+                        setToken = {setToken}
 
-                    <Route path ="/ forgotPassword" element = {
-                        <ForgotPassword
+                    />
+                }
+            />
+
+            <Route path ="/ForgotPassword" element = {
+                    <ForgotPassword
                         setEmail = {setEmail}
                         setPassword = {setPassword}
                         setToken = {setToken}
-                        isLoggedIn = {IsLoggedIn}
+                        isLoggedIn = {isLoggedIn}
                         
                         />
-                    }/>
+                }/>
 
-                    <Route path = "/resetPassword" element = {
-                        <ResetPassword
+            <Route path = "/ResetPassword" element = {
+                    <ResetPassword
                         setPassword = {setPassword}
                         setToken = {setToken}
                         />
-                    }/> 
+                }/> 
 
-                    <Route path = "/profile" element = {
-                        <Profile 
+            <Route path = "/Profile" element = {
+                    <Profile 
                         name = {name} 
                         email = {email} 
                         password = {password} 
                         token = {token} 
                         setToken = {setToken}/>
 
-                    }/>
+                }/>
             
-                </Routes>
-        </Router>
+        </Routes>
+    </BrowserRouter>
 
-        </div>
-    );
-};
+    </div>
+        
+);
+}
+
+
+
+// const root = ReactDOM
+// .createRoot(
+//     document
+//     .getElementById(
+//         'root'
+//     ));
+// root
+// .render(<App />);
 
 export default App;

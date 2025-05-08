@@ -1,5 +1,5 @@
 // User profile
-const user = {
+const Profile = {
     name: 'John Doe',
     age: 30,
     occupation: 'Software Engineer',
@@ -11,4 +11,4 @@ const user = {
         }
         
 }
-export default user;
+export default Profile;

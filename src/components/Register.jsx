@@ -1,5 +1,5 @@
 // user registration
-const registerUser = async (req, res) =>{
+const Register = async (req, res) =>{
     const {name, email, password} = req.body;
     const existingUser = await User.findOne({email});
     if(existingUser) {
@@ -14,4 +14,4 @@ const registerUser = async (req, res) =>{
 
 }
 
-export default registerUser;
+export default Register;

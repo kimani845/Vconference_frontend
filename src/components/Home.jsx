@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import AppNavbar from './AppNavbar';
 import { useNavigate } from 'react-router-dom';
 
-const Home = ({isLoggedIn, setIsLoggedIn, name, email }) =>{
+const Home = ({isLoggedIn, setIsLoggedIn, name, email, setName, setEmail }) =>{
     const [user, setUser] = useState({}); // Holds user data
     const [isLoaded, setIsLoaded] = useState(false); // check is the user is loaded
     let navigate = useNavigate(); // This is the navigation Hook
@@ -13,8 +12,8 @@ const Home = ({isLoggedIn, setIsLoggedIn, name, email }) =>{
     // Get user Data on the component mount
     useEffect (() =>{
             if (!isLoggedIn){
-                navigate ('/login'); // if a user is not logged in, they are directed to the login page
-                return
+                navigate ('/Login'); // if a user is not logged in, they are directed to the login page
+                return;
 
             }
             //fetch user data
@@ -27,7 +26,9 @@ const Home = ({isLoggedIn, setIsLoggedIn, name, email }) =>{
                 .catch ((error) => {
                     console.error('There was an error while fetching your user data', error);
                     setIsLoaded(true); // incase of an error, still mark as loaded     
-                }); [isLoggedIn, navigate]; // re-run the effect if the user logs in or out
+                }); 
+                
+             }, [isLoggedIn, navigate]); // re-run the effect if the user logs in or out
 
             return (
                 <div>
@@ -35,7 +36,9 @@ const Home = ({isLoggedIn, setIsLoggedIn, name, email }) =>{
                     isLoggedIn={isLoggedIn}
                     setIsLoggedIn={setIsLoggedIn}
                     name={name}
+                    setName ={setName}
                     email={email}
+                    setEmail={setEmail}
                                         
                     />
 
@@ -54,7 +57,7 @@ const Home = ({isLoggedIn, setIsLoggedIn, name, email }) =>{
                                 <p> User could not be loaded</p> // Error handling if data doesn't exist
                             )
                         )}
-                        <div classname = "mt-4">
+                        <div className = "mt-4">
                             <Link to = "/create-meeting" className = "bg-blue-500 text-white px-4 px-2 rounded">
                             Create meeting
                             </Link>
@@ -64,10 +67,10 @@ const Home = ({isLoggedIn, setIsLoggedIn, name, email }) =>{
                     </div>
                 </div>
 
-            )
+            
 
-});
+);
             
 };
 
-    export default Home;
+export default Home;
