@@ -1,6 +1,6 @@
 import { Avatar, Dropdown, Navbar } from 'flowbite-react';
 import { Link } from 'react-router-dom';
-import toast from 'react-hot-toast';
+import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 
 const AppNavbar = (props) => {
@@ -8,17 +8,19 @@ const AppNavbar = (props) => {
     const { isLoggedIn, setIsLoggedIn, name, setName, email, setEmail } = props;
 
     const handleLogout = () => {
-    setIsLoggedIn(false);
-    setName('');
-    setEmail('');
-    toast.success('Logged Out Successfully');
-    navigate('/');
+        if (isLoggedIn){
+        setIsLoggedIn(false);
+        setName('');
+        setEmail('');
+        toast.success('Logged Out Successfully');
+        navigate('/');
+        }
     };
 
     return (
     <Navbar className="bg-white shadow" fluid={true} rounded={true}>
         <Navbar.Brand>
-        <Link to="/">
+        {/* <Link to="/"> */}
             <img
             src="https://flowbite.com/docs/images/logo.svg"
             className="mr-3 h-6 sm:h-9"
@@ -27,7 +29,7 @@ const AppNavbar = (props) => {
             <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
             Video Conference
             </span>
-        </Link>
+        {/* </Link> */}
         </Navbar.Brand>
 
         <div className="flex md:order-2">
