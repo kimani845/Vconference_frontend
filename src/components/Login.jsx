@@ -1,151 +1,139 @@
-import React, {useState } from 'react';
-import { Link } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { Typography, Input, Button } from "@material-tailwind/react";
 import { EyeSlashIcon, EyeIcon } from "@heroicons/react/24/solid";
 
-
-export default function Login(setIsLoggedIn, setTooken, setName) {
+// ✅ Props should be destructured from a single object
+export default function Login({ setIsLoggedIn, setTooken, setName }) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
+    const [passwordShown, setPasswordShown] = useState(false);
     const navigate = useNavigate();
 
     const togglePasswordVisibility = () => {
-        setPasswordShown((cur) => !cur)
+    setPasswordShown((cur) => !cur);
     };
-    const [passwordShown, setPasswordShown] = useState(false);
 
+    const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+        const response = await axios.post('/api/login', { email, password });
 
-    const handleSubmit = async(e) =>{
-        e.preventDefault();
-
-        try {
-            const response = await axios.post('/api/login', {email , password});
-            // Assuming the response contains token and user
-            const { token, name } = response.data;
-            localStorage.setItem('token', token);
-            setToken(token);
-            setIsLoggedIn(true);
-            setName(name);
-            console.log(response.data);
-            navigate('/');
-            
-        }catch (error){
-            console.error('Login failed:', error);
-            setError('Invalid email or password');
-            // alert('Login failed. Please check your credentials and try again.');
-        }
-    };
+        const { token, name } = response.data;  
+        localStorage.setItem('token', token);
+        setTooken(token); // ✅ You had setToken — this should match the prop
+        setIsLoggedIn(true);
+        setName(name);
+        navigate('/');
+    } catch (error) {
+        console.error('Login failed:', error);
+        setError('Invalid email or password');
+    }
+};
 
     return (
-            <section className="grid text-center h-screen items-center p-8">
-        <div>
-        <Typography variant="h3" color="blue-gray" className="mb-2">
+    <section className="flex items-center justify-center min-h-screen bg-gray-100">
+        <form onSubmit={handleSubmit} className="bg-white shadow-md rounded p-8 w-full max-w-md">
+        <Typography variant="h3" color="blue-gray" className="mb-2 text-center">
             Sign In
         </Typography>
-        <Typography className="mb-16 text-gray-600 font-normal text-[18px]">
+        <Typography className="mb-6 text-gray-600 text-center text-[18px]">
             Enter your email and password to sign in
         </Typography>
-        
-        <form onSubmit={handleSubmit} className="mx-auto max-w-[24rem] text-left">
-            <div className="mb-6">
-            <label htmlFor="email">
-                <Typography
-                variant="small"
-                className="mb-2 block font-medium text-gray-900"
-                >
-                Your Email
-                </Typography>
-            </label>
-            <Input
-                id="email"
-                color="gray"
-                size="lg"
-                type="email"
-                name="email"
-                value={email}
-                onChange={(e) => setEmail (e.target.value)}
-                placeholder="name@mail.com"
-                className="w-full placeholder:opacity-100 focus:border-t-primary border-t-blue-gray-200"
-                labelProps={{
-                className: "hidden",
-            }}
-            />
-            </div>
-            <div className="mb-6">
-            <label htmlFor="password">
-                <Typography
-                variant="small"
-                className="mb-2 block font-medium text-gray-900"
-                >
-                Password
-                </Typography>
-            </label>
-            <Input
-                size="lg"
-                placeholder="********"
-                password = {setPassword}
-                labelProps={{
-                className: "hidden",
-                }}
-                className="w-full placeholder:opacity-100 focus:border-t-primary border-t-blue-gray-200"
-                type={passwordShown ? "text" : "password"}
-                icon={
 
-                <i onClick={togglePasswordVisibility}>
-                    {passwordShown ? (
-                    <EyeIcon className="h-5 w-5" />
-                    ) : (
-                    <EyeSlashIcon className="h-5 w-5" />
-                    )}
-                </i>
-                }
-            />
-            </div>
-            <Button type ="submit" color="gray" size="lg" className="mt-6" fullWidth>
-            Signin
-            </Button>
-            <div className="!mt-4 flex justify-end">
-            <Typography
-                as="a"
-                href="#"
-                color="blue-gray"
-                variant="small"
-                className="font-medium"
-                >
-                Forgot password
+        {/* Email Field */}
+        <div className="mb-6">
+            <label htmlFor="email">
+            <Typography variant="small" className="mb-2 block font-medium text-gray-900">
+                Your Email
             </Typography>
-            </div>
-            <Button
+            </label>
+            <Input
+            label="Email"
+            id="email"
+            type="email"
+            name="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="name@mail.com"
+            required
+            />
+        </div>
+
+        {/* Password Field */}
+        <div className="mb-6 relative">
+            <label htmlFor="password">
+            <Typography variant="small" className="mb-2 block font-medium text-gray-900">
+                Password
+            </Typography>
+            </label>
+            <Input
+            label="Password"
+            id="password"
+            type={passwordShown ? "text" : "password"}
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="********"
+            required
+            />
+          {/* ✅ Password toggle button placed outside Input */}
+            <button
+            type="button"
+            className="absolute right-3 top-11 text-gray-500"
+            onClick={togglePasswordVisibility}
+            >
+            {passwordShown ? (
+                <EyeSlashIcon className="w-5 h-5" />
+            ) : (
+                <EyeIcon className="w-5 h-5" />
+            )}
+            </button>
+        </div>
+
+        {/* Submit Button */}
+        <Button type="submit" color="gray" size="lg" fullWidth className="mt-6">
+            Sign In
+        </Button>
+
+        {/* Forgot Password */}
+        <div className="mt-4 flex justify-end">
+            <Typography as="a" href="#" variant="small" className="font-medium text-blue-gray-700">
+            Forgot password?
+            </Typography>
+        </div>
+
+        {/* Google Sign In */}
+        <Button
             variant="outlined"
             size="lg"
-            className="mt-6 flex h-12 items-center justify-center gap-2"
+            className="mt-6 flex items-center justify-center gap-2"
             fullWidth
-            >
+        >
             <img
-                src={`https://www.material-tailwind.com/logos/logo-google.png`}
-                alt="google"
-                className="h-6 w-6"
-            />{" "}
-            sign in with google
-            </Button>
-            <Typography
-            variant="small"
-            color="gray"
-            className="!mt-4 text-center font-normal"
-            >
-            Not registered?{" "}
-            <Link to="/signup" className="font-medium text-gray-900">Create account</Link>
-            </Typography>
-        </form>
-        </div>        
-    </section>
+            src="https://www.material-tailwind.com/logos/logo-google.png"
+            alt="google"
+            className="h-6 w-6"
+            />
+            Sign in with Google
+        </Button>
 
+        {/* Signup Link */}
+        <Typography variant="small" color="gray" className="mt-4 text-center">
+            Not registered?{" "}
+            <Link to="/signup" className="font-medium text-gray-900">
+            Create account
+            </Link>
+        </Typography>
+
+        {/* Error Message */}
+        {error && (
+            <Typography variant="small" color="red" className="mt-4 text-center">
+            {error}
+            </Typography>
+        )}
+        </form>
+    </section>
     );
 }
-
-// export default Login;
-
-
