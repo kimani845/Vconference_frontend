@@ -1,14 +1,18 @@
-// User profile
-const Profile = {
-    name: 'John Doe',
-    age: 30,
-    occupation: 'Software Engineer',
-    address: {
-        street: '123 Main St',
-        city: 'Anytown',
-        state: 'CA',
-        zip: '12345'
-        }
-        
-}
-export default Profile;
+// Profile
+const Profile = ({ name, setName, email, setEmail, password, token, setToken }) => {
+    return (
+        <div>
+            <h1>Profile Page</h1>
+            <p>Name: {name}</p>
+            <p>setName: {setName}</p>
+            <p>Email: {email}</p>
+            <p>SetEmail: {setEmail}</p>
+            <p>Password0: {password}</p>
+            <p>Token: {token}</p>
+            <p>SetToken: {setToken}</p>
+
+        </div>
+    );
+    };
+
+export default Profile; 

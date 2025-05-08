@@ -97,7 +97,9 @@ const App = () => {
             <Route path = "/Profile" element = {
                     <Profile 
                         name = {name} 
+                        setName = {setName}
                         email = {email} 
+                        setEmail = {setEmail}
                         password = {password} 
                         token = {token} 
                         setToken = {setToken}/>
