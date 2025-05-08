@@ -67,11 +67,12 @@ const App = () => {
             
             <Route path = "/Login" element = {
                     <Login
-                        isLoggedIn = {isLoggedIn}
+                        
+                        // isLoggedIn = {isLoggedIn}
                         setIsLoggedIn = {setIsLoggedIn} 
                         setName = {setName} 
-                        setEmail = {setEmail} 
-                        setPassword = {setPassword}
+                        // setEmail = {setEmail} 
+                        // setPassword = {setPassword}
                         setToken = {setToken}
 
                     />

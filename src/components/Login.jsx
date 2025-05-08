@@ -6,12 +6,15 @@ import { Typography, Input, Button } from "@material-tailwind/react";
 import { EyeSlashIcon, EyeIcon } from "@heroicons/react/24/solid";
 
 
-function Login() {
+export default function Login(setIsLoggedIn, setTooken, setName) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
     const navigate = useNavigate();
-    const togglePasswordVisibility = () => setPasswordShown((cur) => !cur);
+
+    const togglePasswordVisibility = () => {
+        setPasswordShown((cur) => !cur)
+    };
     const [passwordShown, setPasswordShown] = useState(false);
 
 
@@ -20,11 +23,19 @@ function Login() {
 
         try {
             const response = await axios.post('/api/login', {email , password});
+            // Assuming the response contains token and user
+            const { token, name } = response.data;
+            localStorage.setItem('token', token);
+            setToken(token);
+            setIsLoggedIn(true);
+            setName(name);
             console.log(response.data);
-            localStorage.setItem('token', response.data.token);
-            navigate('/home');
+            navigate('/');
+            
         }catch (error){
             console.error('Login failed:', error);
+            setError('Invalid email or password');
+            // alert('Login failed. Please check your credentials and try again.');
         }
     };
 
@@ -75,6 +86,7 @@ function Login() {
             <Input
                 size="lg"
                 placeholder="********"
+                password = {setPassword}
                 labelProps={{
                 className: "hidden",
                 }}
@@ -134,6 +146,6 @@ function Login() {
     );
 }
 
-export default Login;
+// export default Login;
 
 
