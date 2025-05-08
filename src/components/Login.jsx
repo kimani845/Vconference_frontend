@@ -11,7 +11,7 @@ function Login() {
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
     const navigate = useNavigate();
-    const togglePasswordVisiblity = () => setPasswordShown((cur) => !cur);
+    const togglePasswordVisibility = () => setPasswordShown((cur) => !cur);
     const [passwordShown, setPasswordShown] = useState(false);
 
 
@@ -74,8 +74,6 @@ function Login() {
             </label>
             <Input
                 size="lg"
-                type ={passwordShown? "text": "password"}
-                name = "password"
                 placeholder="********"
                 labelProps={{
                 className: "hidden",
@@ -83,7 +81,8 @@ function Login() {
                 className="w-full placeholder:opacity-100 focus:border-t-primary border-t-blue-gray-200"
                 type={passwordShown ? "text" : "password"}
                 icon={
-                <i onClick={togglePasswordVisiblity}>
+
+                <i onClick={togglePasswordVisibility}>
                     {passwordShown ? (
                     <EyeIcon className="h-5 w-5" />
                     ) : (
@@ -93,8 +92,8 @@ function Login() {
                 }
             />
             </div>
-            <Button color="gray" size="lg" className="mt-6" fullWidth>
-            sign in
+            <Button type ="submit" color="gray" size="lg" className="mt-6" fullWidth>
+            Signin
             </Button>
             <div className="!mt-4 flex justify-end">
             <Typography
@@ -126,9 +125,7 @@ function Login() {
             className="!mt-4 text-center font-normal"
             >
             Not registered?{" "}
-            <a href="#" className="font-medium text-gray-900">
-                Create account
-            </a>
+            <Link to="/signup" className="font-medium text-gray-900">Create account</Link>
             </Typography>
         </form>
         </div>        
