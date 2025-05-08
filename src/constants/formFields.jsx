@@ -1,3 +1,4 @@
+// Login Fields
 const loginFields=[
     {
         labelText:"Email address",
@@ -20,6 +21,8 @@ const loginFields=[
         placeholder:"Password"   
     }
 ]
+
+// Signup fields
 const signupFields=[
     {
         labelText: "Full Name",
@@ -30,6 +33,18 @@ const signupFields=[
         autoComplete: "name",
         isRequired: true,
         placeholder: "Full Name"
+
+    },
+
+    {
+        labelText: "User Name",
+        labelFor: "user-name",
+        id: "user-name",
+        name: "user-name",
+        type: "text",
+        autoComplete: "username",
+        isRequired: false,
+        placeholder: "User Name"
 
     },
 
