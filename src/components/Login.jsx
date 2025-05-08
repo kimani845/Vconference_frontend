@@ -19,7 +19,7 @@ function Login() {
         e.preventDefault();
 
         try {
-            const response = await axios.post('/api/login', email , password);
+            const response = await axios.post('/api/login', {email , password});
             console.log(response.data);
             localStorage.setItem('token', response.data.token);
             navigate('/home');
@@ -29,7 +29,6 @@ function Login() {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
             <section className="grid text-center h-screen items-center p-8">
         <div>
         <Typography variant="h3" color="blue-gray" className="mb-2">
@@ -38,7 +37,8 @@ function Login() {
         <Typography className="mb-16 text-gray-600 font-normal text-[18px]">
             Enter your email and password to sign in
         </Typography>
-        <form action="#" className="mx-auto max-w-[24rem] text-left">
+        
+        <form onSubmit={handleSubmit} className="mx-auto max-w-[24rem] text-left">
             <div className="mb-6">
             <label htmlFor="email">
                 <Typography
@@ -54,6 +54,8 @@ function Login() {
                 size="lg"
                 type="email"
                 name="email"
+                value={email}
+                onChange={(e) => setEmail (e.target.value)}
                 placeholder="name@mail.com"
                 className="w-full placeholder:opacity-100 focus:border-t-primary border-t-blue-gray-200"
                 labelProps={{
@@ -72,6 +74,8 @@ function Login() {
             </label>
             <Input
                 size="lg"
+                type ={passwordShown? "text": "password"}
+                name = "password"
                 placeholder="********"
                 labelProps={{
                 className: "hidden",
@@ -127,10 +131,9 @@ function Login() {
             </a>
             </Typography>
         </form>
-        </div>
+        </div>        
     </section>
 
-        </form>
     );
 }
 
