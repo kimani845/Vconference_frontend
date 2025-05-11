@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import AppNavbar from '../components/AppNavbar'; // adjust the path as necessary
 
 const Home = ({isLoggedIn, setIsLoggedIn, name, email, setName, setEmail }) =>{
     const [user, setUser] = useState({}); // Holds user data

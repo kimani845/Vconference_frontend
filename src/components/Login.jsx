@@ -40,7 +40,7 @@ export default function Login({ setIsLoggedIn, setTooken, setName }) {
         onSubmit={handleSubmit} 
         className="bg-white shadow-md rounded-x1 p-8 w-full max-w-md col-md-12"
         >
-        <Typography variant="h3" color="blue-gray-900" className="mb-2 text-center">
+        <Typography variant="h3" color="blue-gray" className="mb-2 text-center">
             Sign In
         </Typography>
 
