@@ -15,9 +15,28 @@ const Register = (props) =>{
         if(isLoggedIn){navigate("Home");
     }
 });
+}
 
-const Register = async (req, res) =>{
-    const {name, email, password} = req.body;
+const handleRegister = async (ev) =>{
+    ev.preventDefault();
+    const name =ev.target.name.value;
+    const email = ev.target.email.value;
+    const password = ev.target.password.value;
+    const confirmPassword = ev.target.confirmPassword.value;
+    // const country = ev.target.country.value;
+    // const phone = ev.target.phone.value;
+    // const address = ev.target.address.value;
+    // const city = ev.target.city.value;
+    // const state = ev.target.state.value;
+    // const zip = ev.target.zip.value;
+    const role = ev.target.role.value;
+
+    try{
+        const response = await axios.post(URL, {})
+        }
+        catch(error){
+            console.log(error);
+        }
     const existingUser = await User.findOne({email});
     if(existingUser) {
         return res.status(400).json({message: "Email already exists"});
