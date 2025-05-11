@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import AppNavbar from '../components/AppNavbar'; // adjust the path as necessary
 
 const Home = ({isLoggedIn, setIsLoggedIn, name, email, setName, setEmail }) =>{
+    const [users, setUsers] = useState([]);
     const [user, setUser] = useState({}); // Holds user data
     const [isLoaded, setIsLoaded] = useState(false); // check is the user is loaded
     let navigate = useNavigate(); // This is the navigation Hook
@@ -32,6 +33,7 @@ const Home = ({isLoggedIn, setIsLoggedIn, name, email, setName, setEmail }) =>{
              }, [isLoggedIn, navigate]); // re-run the effect if the user logs in or out
 
             return (
+
                 <div>
                     <AppNavbar
                     isLoggedIn={isLoggedIn}

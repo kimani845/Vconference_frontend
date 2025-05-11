@@ -1,4 +1,11 @@
 // user registration
+import {useNavigate} from 'react-router-dom';
+import {useState} from 'react';
+import axios from 'axios';
+import {toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { useEffect } from 'react';
+
 const Register = async (req, res) =>{
     const {name, email, password} = req.body;
     const existingUser = await User.findOne({email});
