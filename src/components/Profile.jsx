@@ -1,8 +1,8 @@
 // Profile
 import React from 'react';
 import { Link } from 'react-router-dom';
-import {useAuth} from './AuthContext';
-import { useAuth0 } from '@auth0/auth0-react';
+// import {useAuth} from './AuthContext';
+// import { useAuth0 } from '@auth0/auth0-react';
 
 const Profile = ({ name, setName, email, setEmail, password, token, setToken }) => {
     const user = useAuth();
