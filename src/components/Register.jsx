@@ -32,13 +32,37 @@ const handleRegister = async (ev) =>{
     if(country === "Select Country") toast.error("Select your Country");
     if(phone === "") toast.error("Enter your Phone Number");
     if (password !== confirmPassword) toast.error("Passwords do not match");
+    // if(password.length)
+    else{
+        const formData = {
+            name: name,
+            email: email,
+            password: password,
+            country: country,
+            phone: phone,
+
+        };
+
+    }
     const role = ev.target.role.value;
 
     try{
-        const response = await axios.post(URL, {})
+        const response = await axios.post(URL, formData);
+        const data = response.data;
+        if( data.success === true){
+            toast.success(data.message);
+            setIsLoggedIn(true);
+            setName(data.name);
+            setEmail(data.email);
+            navigate("Home");
+
+        }
+        else{
+            toast.error(data.message);
+        }
         }
         catch(error){
-            console.log(error);
+            console.log("Some error occured", error);
         }
     const existingUser = await User.findOne({email});
     if(existingUser) {
