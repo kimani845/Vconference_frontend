@@ -1,4 +1,8 @@
 // Profile
+import React from 'react';
+import { Link } from 'react-router-dom';
+import {useAuth} from './AuthContext';
+
 const Profile = ({ name, setName, email, setEmail, password, token, setToken }) => {
     return (
         <div>
