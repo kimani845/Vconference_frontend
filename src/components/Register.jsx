@@ -29,6 +29,9 @@ const handleRegister = async (ev) =>{
     // const city = ev.target.city.value;
     // const state = ev.target.state.value;
     // const zip = ev.target.zip.value;
+    if(country === "Select Country") toast.error("Select your Country");
+    if(phone === "") toast.error("Enter your Phone Number");
+    if (password !== confirmPassword) toast.error("Passwords do not match");
     const role = ev.target.role.value;
 
     try{
