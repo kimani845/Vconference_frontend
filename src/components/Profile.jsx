@@ -13,13 +13,20 @@ const Profile = ({ name, setName, email, setEmail, password, token, setToken }) 
             <div className ="profile">
                 <p className ="userInfo" id ="userInfo1">
                     Name : {user.name}</p>
-                <p>Name: {name}</p>
-                <p>setName: {setName}</p>
-                <p>Email: {email}</p>
-                <p>SetEmail: {setEmail}</p>
-                <p>Password0: {password}</p>
-                <p>Token: {token}</p>
-                <p>SetToken: {setToken}</p>
+                <p className ="userInfo" id = "userInfo2">
+                    Name: {name2}</p>
+                <p className= "userInfo" id = "userInfo3">
+                    setName: {setName}</p>
+                <p className = "userInfo" id = "userEmail">
+                    Email: {email}</p>
+                <p className = "userName" id = "userEmail2">
+                    SetEmail: {setEmail}</p>
+                <p className = "userInfo" id ="userPassword">
+                    Password0: {password}</p>
+                <p className ="userInfo" id = "userToken">
+                    Token: {token}</p>
+                <p className="userInfo" id ="userToken">
+                    SetToken: {setToken}</p>
 
             </div>
         </>
