@@ -6,6 +6,16 @@ import {toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useEffect } from 'react';
 
+const URL = ProcessingInstruction.env.REACT_APP_BACKEND_URL + '/api/v1/registration';
+const Register = (props) =>{
+    const {isLoggedIn, setIsLoggedIn, setName, setEmail} = props;
+    let navigate = useNavigate();
+
+    useEffect(() =>{
+        if(isLoggedIn){navigate("Home");
+    }
+});
+
 const Register = async (req, res) =>{
     const {name, email, password} = req.body;
     const existingUser = await User.findOne({email});
