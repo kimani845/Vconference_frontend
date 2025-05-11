@@ -10,8 +10,9 @@ const Profile = ({ name, setName, email, setEmail, password, token, setToken }) 
 
     return (
         <>
-            <div>
-                <h1>Profile Page</h1>
+            <div className ="profile">
+                <p className ="userInfo" id ="userInfo1">
+                    Name : {user.name}</p>
                 <p>Name: {name}</p>
                 <p>setName: {setName}</p>
                 <p>Email: {email}</p>
