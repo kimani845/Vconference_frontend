@@ -7,65 +7,55 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useEffect } from 'react';
 
 const API_BASE = import.meta.env.VITE_BACKEND_URL;
-const Register = (props) =>{
-    const {isLoggedIn, setIsLoggedIn, setName, setEmail} = props;
-    let navigate = useNavigate();
+const Register = (props) => {
+    const { isLoggedIn, setIsLoggedIn, setName, setEmail } = props;
+    const navigate = useNavigate();
 
-    useEffect(() =>{
-        if(isLoggedIn)
-            navigate("Home");
-    
+    useEffect(() => {
+        if (isLoggedIn) {
+            navigate("/Home");
+            }
+    }, [isLoggedIn]);
 
-}, [ isLoggedIn, navigate ]);
-const handleRegister = async (ev) =>{
-    ev.preventDefault();
-    const name =ev.target.name.value;
-    const email = ev.target.email.value;
-    const password = ev.target.password.value;
-    const confirmPassword = ev.target.confirmPassword.value;
-    // const country = ev.target.country.value;
-    // const phone = ev.target.phone.value;
-    // const address = ev.target.address.value;
-    // const city = ev.target.city.value;
-    // const state = ev.target.state.value;
-    // const zip = ev.target.zip.value;
-    if(country === "Select Country") toast.error("Select your Country");
-    if(!phone === "") return  toast.error("Enter your Phone Number");
-    if (password !== confirmPassword) toast.error("Passwords do not match");
-    // if(password.length)
-    else{
-        const formData = {
-            name: name,
-            email: email,
-            password: password,
-            country: country,
-            phone: phone,
+    const handleRegister = async (ev) => {
+        ev.preventDefault();
+        const name = ev.target.name.value;
+        const email = ev.target.email.value;
+        const password = ev.target.password.value;
+        const confirmPassword = ev.target.confirmpassword.value;
+        const country = ev.target.country?.value;
+        const phone = ev.target.phone?.value;
 
-        };
-
-    }
-    const role = ev.target.role.value;
-
-    try{
-        const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/register`, formData);
-
-        const data = response.data;
-        if( data.success === true){
-            toast.success(data.message);
-            setIsLoggedIn(true);
-            setName(data.name);
-            setEmail(data.email);
-            navigate("Home");
-
+        if (!country || country === "Select Country") {
+            return toast.error("Select your Country");
         }
-        else{
-            toast.error(data.message);
+        if (!phone) {
+            return toast.error("Enter your Phone Number");
         }
+        if (password !== confirmPassword) {
+            return toast.error("Passwords do not match");
         }
-        catch(error){
-            console.log("Some error occured", error);
 
+        const formData = { name, email, password, country, phone };
+
+        try {
+            const response = await axios.post(`${API_BASE}/api/register`, formData);
+            const data = response.data;
+
+            if (data.success === true) {
+                toast.success(data.message);
+                setIsLoggedIn(true);
+                setName(data.name);
+                setEmail(data.email);
+                navigate("/Home");
+            } else {
+                toast.error(data.message);
+            }
+        } catch (error) {
+            console.error("Registration error:", error);
+            toast.error("Something went wrong. Try again.");
         }
+    };
 
 
 
@@ -217,12 +207,10 @@ const handleRegister = async (ev) =>{
             </button>
             <p className="text-center text-sm text-gray-500">
                 Already have an account?{" "}
-                <a
-                href="login"
-                className="font-semibold leading-6 text-purple-600 hover:text-purple-500"
-                >
+                <Link to ="/Login"
+                className="font-semibold leading-6 text-purple-600 hover:text-purple-500">
                 Login Here
-                </a>
+                </Link>
             </p>
             </form>
         </div>
@@ -242,5 +230,5 @@ const handleRegister = async (ev) =>{
     //     }
 
 
-}
+
 export default Register;
