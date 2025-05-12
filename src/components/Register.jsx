@@ -6,16 +6,18 @@ import {toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useEffect } from 'react';
 
-const URL = ProcessingInstruction.env.REACT_APP_BACKEND_URL + '/api/v1/registration';
+const API_BASE = import.meta.env.VITE_BACKEND_URL;
 const Register = (props) =>{
     const {isLoggedIn, setIsLoggedIn, setName, setEmail} = props;
     let navigate = useNavigate();
 
     useEffect(() =>{
-        if(isLoggedIn){navigate("Home");
+        if(isLoggedIn){
+            navigate("Home");
     }
-});
-}
+
+}, [ isLoggedIn, navigate ]);
+
 
 const handleRegister = async (ev) =>{
     ev.preventDefault();
@@ -47,7 +49,8 @@ const handleRegister = async (ev) =>{
     const role = ev.target.role.value;
 
     try{
-        const response = await axios.post(URL, formData);
+        const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/register`, formData);
+
         const data = response.data;
         if( data.success === true){
             toast.success(data.message);
@@ -239,5 +242,5 @@ const handleRegister = async (ev) =>{
     //     }
 
 
-
+}
 export default Register;
