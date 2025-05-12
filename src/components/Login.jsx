@@ -11,6 +11,13 @@ export default function Login({ setIsLoggedIn, setTooken, setName }) {
     const [error, setError] = useState("");
     const [passwordShown, setPasswordShown] = useState(false);
     const navigate = useNavigate();
+    
+        useEffect(() => {
+            if (isLoggedIn) {
+                navigate("/");
+                }
+        }, [isLoggedIn]);
+    
 
     const togglePasswordVisibility = () => {
     setPasswordShown((cur) => !cur);
@@ -19,7 +26,7 @@ export default function Login({ setIsLoggedIn, setTooken, setName }) {
     const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-        const response = await axios.post('/api/login', { email, password });
+        const response = await axios.post('/api/Login', { email, password });
 
         const { token, name } = response.data;  
         localStorage.setItem('token', token);

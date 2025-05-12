@@ -13,7 +13,7 @@ const Register = (props) => {
 
     useEffect(() => {
         if (isLoggedIn) {
-            navigate("/Home");
+            navigate("/");
             }
     }, [isLoggedIn]);
 
@@ -56,7 +56,6 @@ const Register = (props) => {
             toast.error("Something went wrong. Try again.");
         }
     };
-
 
 
         return (
