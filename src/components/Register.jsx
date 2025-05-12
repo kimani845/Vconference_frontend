@@ -12,13 +12,11 @@ const Register = (props) =>{
     let navigate = useNavigate();
 
     useEffect(() =>{
-        if(isLoggedIn){
+        if(isLoggedIn)
             navigate("Home");
-    }
+    
 
 }, [ isLoggedIn, navigate ]);
-
-
 const handleRegister = async (ev) =>{
     ev.preventDefault();
     const name =ev.target.name.value;
@@ -32,7 +30,7 @@ const handleRegister = async (ev) =>{
     // const state = ev.target.state.value;
     // const zip = ev.target.zip.value;
     if(country === "Select Country") toast.error("Select your Country");
-    if(phone === "") toast.error("Enter your Phone Number");
+    if(!phone === "") return  toast.error("Enter your Phone Number");
     if (password !== confirmPassword) toast.error("Passwords do not match");
     // if(password.length)
     else{
@@ -68,6 +66,8 @@ const handleRegister = async (ev) =>{
             console.log("Some error occured", error);
 
         }
+
+
 
         return (
     <div className="w-full flex flex-col items-center justify-center px-6 py-8 mx-auto my-5 lg:py-0">
