@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { useEffect } from 'react';
 import { Typography, Input, Button } from "@material-tailwind/react";
 import { EyeSlashIcon, EyeIcon } from "@heroicons/react/24/solid";
 
 //  Props destructured from a single object
-export default function Login({ setIsLoggedIn, setTooken, setName }) {
+export default function Login({ isLoggedIn, setIsLoggedIn, setTooken, setName }) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");

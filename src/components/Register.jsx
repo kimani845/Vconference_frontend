@@ -2,6 +2,7 @@
 import {useNavigate} from 'react-router-dom';
 import {useState} from 'react';
 import axios from 'axios';
+import {Link } from 'react-router-dom';
 import {toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useEffect } from 'react';
@@ -22,8 +23,9 @@ const Register = (props) => {
         const name = ev.target.name.value;
         const email = ev.target.email.value;
         const password = ev.target.password.value;
-        const confirmPassword = ev.target.confirmpassword.value;
+        const confirmPassword = ev.target.confirmPassword.value;
         const country = ev.target.country?.value;
+        const city = ev.target.city?.value;
         const phone = ev.target.phone?.value;
 
         if (!country || country === "Select Country") {
@@ -149,7 +151,7 @@ const Register = (props) => {
                 </div>
             </div>
 
-            <CountryInput />
+            {/* <CountryInput />
             <div className="max-w-xl">
                 <div className="mb-2 block">
                 <label htmlFor="phone" className="text-sm font-medium">
@@ -168,7 +170,7 @@ const Register = (props) => {
                 placeholder="1234567890"
                 aria-errormessage="Phone number must start with 7 or 9"
                 />
-            </div>
+            </div> */}
 
             <div className="flex items-start">
                 <div className="flex items-center h-5">
