@@ -148,7 +148,7 @@ export default function Login({ isLoggedIn, setIsLoggedIn, setToken, setName }) 
         {/* Signup Link */}
         <Typography variant="small" color="gray" className="mt-4 text-center">
             Not registered?{" "}
-            <Link to="/Register" className="font-medium text-gray-900">
+            <Link to="/Register" className="font-semibold leading-6 text-purple-600 hover:text-purple-500">
             Create account
             </Link>
         </Typography>
