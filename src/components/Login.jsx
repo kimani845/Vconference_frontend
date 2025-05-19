@@ -5,8 +5,9 @@ import { useEffect } from 'react';
 import { Typography, Input, Button } from "@material-tailwind/react";
 import { EyeSlashIcon, EyeIcon } from "@heroicons/react/24/solid";
 
+
 //  Props destructured from a single object
-export default function Login({ isLoggedIn, setIsLoggedIn, setTooken, setName }) {
+export default function Login({ isLoggedIn, setIsLoggedIn, setToken, setName }) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
@@ -31,7 +32,7 @@ export default function Login({ isLoggedIn, setIsLoggedIn, setTooken, setName })
 
         const { token, name } = response.data;  
         localStorage.setItem('token', token);
-        setTooken(token); 
+        setToken(token); 
         setIsLoggedIn(true);
         setName(name);
         navigate('/');
@@ -42,23 +43,28 @@ export default function Login({ isLoggedIn, setIsLoggedIn, setTooken, setName })
 };
 
     return (
-    <section className="flex h-screen items-center justify-center">
-
+    <section className="bg-gray-500 flex h-screen items-center justify-center">
+            <div className="flex h-screen items-center justify-center">
+        <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-xl xl:p-0
+            dark:bg-gray-800 dark:border-gray-700 ">
+        <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
+            <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl
+                dark:text-white text-center text-[18px]">
+            SignIn 
+            </h1>
         <form 
+        className="space-y-4 md:space-y- rounded-x1 p-8 w-full max-w-md col-md-12"
+            action="POST"
         onSubmit={handleSubmit} 
-        className="bg-white shadow-md rounded-x1 p-8 w-full max-w-md col-md-12"
+        // className="bg-white shadow-md rounded-x1 p-8 w-full max-w-md col-md-12 "
         >
-        <Typography variant="h3" color="blue-gray" className="mb-2 text-center">
-            Sign In
-        </Typography>
-
         <Typography className="mb-6 text-green-600 text-center text-[18px]">
             Enter your email and password to sign in
         </Typography>
 
         {/* Email Field */}
-        <div className="mb-6">
-            <label htmlFor="email" required =""  className="block font-medium text-gray-900 mb-1">
+        <div className="mb-2 block">
+            <label htmlFor="email" className="text-sm font-medium required">
                 Your Email  <span className="text-red-500">*</span>
 
             </label>
@@ -69,8 +75,11 @@ export default function Login({ isLoggedIn, setIsLoggedIn, setTooken, setName })
             name="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            placeholder="you@gmail.com"
-            // required
+            placeholder="kimaniwangai@gmail.com"
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500
+                        focus:border-purple-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400
+                            dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500"
+            required
             />
         </div>
 
@@ -116,11 +125,10 @@ export default function Login({ isLoggedIn, setIsLoggedIn, setTooken, setName })
         </Button>
 
         {/* Forgot Password */}
-        <div className="mt-4 flex justify-end">
-            <Typography as="a" href="#" variant="small" className="font-medium text-blue-gray-700">
-            Forgot password?
-            </Typography>
-        </div>
+        <Link to ="/ForgotPassword"
+                className="font-semibold leading-6 text-purple-600 hover:text-purple-500">
+                Forgot Password
+                </Link>
 
         {/* Google Sign In */}
         <Button
@@ -151,7 +159,11 @@ export default function Login({ isLoggedIn, setIsLoggedIn, setTooken, setName })
             {error}
             </Typography>
         )}
-        </form>
+            </form>
+        </div>
+    </div>
+    </div>
     </section>
+
     );
 }
