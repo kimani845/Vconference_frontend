@@ -75,6 +75,12 @@ const ForgotPassword = (props) => {
                 required
                 />
             </div>
+                <button
+                            type="submit"
+                            className="w-full bg-purple-600 text-white py-2 px-4 rounded-lg hover:bg-purple-700 transition"
+                        >
+                            Send Reset Link
+                        </button>
             </form>
             </div>
         </div>

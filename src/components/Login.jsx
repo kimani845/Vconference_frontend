@@ -120,7 +120,7 @@ export default function Login({ isLoggedIn, setIsLoggedIn, setToken, setName }) 
         </div>
 
         {/* Submit Button */}
-        <Button type="submit" color="gray" size="lg" fullWidth className="mt-6">
+        <Button type="submit" color="gray" size="lg" fullWidth className="w-full bg-purple-600 text-white py-2 px-4 rounded-lg hover:bg-purple-700 transition">
             Sign In
         </Button>
 
