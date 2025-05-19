@@ -1,19 +1,19 @@
 // ForgotPassword
-import React from 'react';
+// import React from 'react';
 // import { useEffect } from 'react';
+import React, { useState} from 'react';
+import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { toast } from 'react-toastify'; // make sure you've installed react-toastify
+import 'react-toastify/dist/ReactToastify.css'; // default style
 
 
-const ForgotPassword = () =>{
-    const API_BASE = import.meta.env.VITE_BACKEND_URL;
+
 const ForgotPassword = (props) => {
-    const { setEmail } = props;
+    const API_BASE = import.meta.env.VITE_BACKEND_URL;
+    const { email, setEmail } = props;
     const navigate = useNavigate();
-
-    // useEffect(() => {
-    //     if (isLoggedIn) {
-    //         navigate("/");
-    //         }
-    // }, [isLoggedIn]);
 
     const handleForgotPassword = async (ev) => {
         ev.preventDefault();
@@ -28,7 +28,7 @@ const ForgotPassword = (props) => {
             if (data.success === true) {
                 toast.success(data.message);
                 // setIsLoggedIn(true);
-                setEmail(data.email);
+                setEmail(data.email); // set email in state. But this is optional but redudant
                 navigate("/ResetPassword");
             } else {
                 toast.error(data.message);
@@ -59,7 +59,7 @@ const ForgotPassword = (props) => {
                     Enter the email you registered with 
                 </label>
                 <Input
-                // label="Email"
+                label="Email"
                 id="email"
                 type="email"
                 name="email"
@@ -81,7 +81,7 @@ const ForgotPassword = (props) => {
     )
 };
 
-}
+
 
 export default ForgotPassword;
 
