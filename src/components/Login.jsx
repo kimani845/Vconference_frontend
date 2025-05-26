@@ -101,16 +101,17 @@ export default function Login({ isLoggedIn, setIsLoggedIn, setToken, setName }) 
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             onBlur={() => handleBlur("password")}
-            className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-purple-600
-                        focus:border-purple-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400
-                            dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500"
+            className="w-full focus:outline-none text-white bg-purple-600 hover:bg-purple-700 focus:ring-4
+                    focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5
+                        dark:bg-purple-500 dark:hover:bg-purple-600 dark:focus:ring-purple-800"
             />
         </div>
         
           {/*  Password toggle button  */}
             <button
             type="button"
-            className="absolute top-6 right-0 pr-3 flex items-center cursor-pointer justify-center"
+            className="absolute top-6 right-0 pr-3 flex items-center 
+            cursor-pointer justify-center"
             onClick={togglePasswordVisibility}
             >
             {passwordShown ? (
