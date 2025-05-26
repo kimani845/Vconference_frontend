@@ -82,8 +82,8 @@ const App = () => {
             <Route path ="/ForgotPassword" element = {
                     <ForgotPassword
                         setEmail = {setEmail}
-                        setPassword = {setPassword}
-                        setToken = {setToken}
+                        // setPassword = {setPassword}
+                        // setToken = {setToken}
                         isLoggedIn = {isLoggedIn}
                         
                         />

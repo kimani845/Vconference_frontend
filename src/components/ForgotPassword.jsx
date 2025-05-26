@@ -1,19 +1,20 @@
 // ForgotPassword
-import React from 'react';
+// import React from 'react';
 // import { useEffect } from 'react';
+import React, { useState} from 'react';
+import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { toast } from 'react-toastify'; // make sure you've installed react-toastify
+import 'react-toastify/dist/ReactToastify.css'; // default style
+import {  Input, Button } from "@material-tailwind/react";
 
 
-const ForgotPassword = () =>{
-    const API_BASE = import.meta.env.VITE_BACKEND_URL;
+
 const ForgotPassword = (props) => {
-    const { setEmail } = props;
+    const API_BASE = import.meta.env.VITE_BACKEND_URL;
+    const { email, setEmail } = props;
     const navigate = useNavigate();
-
-    // useEffect(() => {
-    //     if (isLoggedIn) {
-    //         navigate("/");
-    //         }
-    // }, [isLoggedIn]);
 
     const handleForgotPassword = async (ev) => {
         ev.preventDefault();
@@ -28,7 +29,7 @@ const ForgotPassword = (props) => {
             if (data.success === true) {
                 toast.success(data.message);
                 // setIsLoggedIn(true);
-                setEmail(data.email);
+                setEmail(data.email); // set email in state. But this is optional but redudant
                 navigate("/ResetPassword");
             } else {
                 toast.error(data.message);
@@ -40,13 +41,15 @@ const ForgotPassword = (props) => {
     };
 
     return (
+            <section className="bg-gray-500 flex h-screen items-center justify-center">
+
     <div className="flex h-screen items-center justify-center">
         <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-xl xl:p-0
             dark:bg-gray-800 dark:border-gray-700 ">
         <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
             <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl
                 dark:text-white text-center text-[18px]">
-            Create an account
+            Enter Your Email
             </h1>
       {/* Forgot password form content */}
     <form   className="space-y-4 md:space-y- rounded-x1 p-8 w-full max-w-md col-md-12"
@@ -59,7 +62,7 @@ const ForgotPassword = (props) => {
                     Enter the email you registered with 
                 </label>
                 <Input
-                // label="Email"
+                label="Email"
                 id="email"
                 type="email"
                 name="email"
@@ -72,16 +75,23 @@ const ForgotPassword = (props) => {
                 required
                 />
             </div>
+                <button
+                            type="submit"
+                            className="w-full bg-purple-600 text-white py-2 px-4 rounded-lg hover:bg-purple-700 transition"
+                        >
+                            Send Reset Link
+                        </button>
             </form>
             </div>
         </div>
     
         </div>
+        </section>
     
     )
 };
 
-}
+
 
 export default ForgotPassword;
 

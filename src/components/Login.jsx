@@ -122,7 +122,7 @@ export default function Login({ isLoggedIn, setIsLoggedIn, setToken, setName }) 
         </div>
 
         {/* Submit Button */}
-        <Button type="submit" color="gray" size="lg" fullWidth className="mt-6">
+        <Button type="submit" color="gray" size="lg" fullWidth className="w-full bg-purple-600 text-white py-2 px-4 rounded-lg hover:bg-purple-700 transition">
             Sign In
         </Button>
 
@@ -150,7 +150,7 @@ export default function Login({ isLoggedIn, setIsLoggedIn, setToken, setName }) 
         {/* Signup Link */}
         <Typography variant="small" color="gray" className="mt-4 text-center">
             Not registered?{" "}
-            <Link to="/Register" className="font-medium text-gray-900">
+            <Link to="/Register" className="font-semibold leading-6 text-purple-600 hover:text-purple-500">
             Create account
             </Link>
         </Typography>
