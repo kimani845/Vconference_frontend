@@ -25,7 +25,7 @@ export default function Login({ isLoggedIn, setIsLoggedIn, setToken, setName }) 
     setPasswordShown((cur) => !cur);
     };
 
-    const handleSubmit = async (e) => {
+    const handleLogin= async (e) => {
     e.preventDefault();
     try {
         const response = await axios.post('/api/Login', { email, password });
@@ -44,9 +44,11 @@ export default function Login({ isLoggedIn, setIsLoggedIn, setToken, setName }) 
 
     return (
     <section className="bg-gray-500 flex h-screen items-center justify-center">
+
             <div className="flex h-screen items-center justify-center">
         <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-xl xl:p-0
             dark:bg-gray-800 dark:border-gray-700 ">
+
         <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
             <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl
                 dark:text-white text-center text-[18px]">
@@ -55,7 +57,7 @@ export default function Login({ isLoggedIn, setIsLoggedIn, setToken, setName }) 
         <form 
         className="space-y-4 md:space-y- rounded-x1 p-8 w-full max-w-md col-md-12"
             action="POST"
-        onSubmit={handleSubmit} 
+        Submit={handleLogin} 
         // className="bg-white shadow-md rounded-x1 p-8 w-full max-w-md col-md-12 "
         >
         <Typography className="mb-6 text-green-600 text-center text-[18px]">
@@ -68,8 +70,7 @@ export default function Login({ isLoggedIn, setIsLoggedIn, setToken, setName }) 
                 Your Email  <span className="text-red-500">*</span>
 
             </label>
-            <Input
-            // label="Email"
+            <input
             id="email"
             type="email"
             name="email"
@@ -84,9 +85,9 @@ export default function Login({ isLoggedIn, setIsLoggedIn, setToken, setName }) 
         </div>
 
         {/* Password Field */}
-        <div className="mb-6 relative">
+        <div className="mb-2 block">
         <label htmlFor="password" 
-        className="block text-sm font-normal text-gray-700">
+        className="text-sm font-medium required">
                 Password  
             </label>
             <div className="mt-1 relative">
@@ -100,8 +101,9 @@ export default function Login({ isLoggedIn, setIsLoggedIn, setToken, setName }) 
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             onBlur={() => handleBlur("password")}
-            className="block w-full appearance-none placeholder:text-xs rounded-md border border-gray-300 px-3 py-2 shadow-sm
-                focus:border-neutral-950 focus:outline-none sm:text-sm"
+            className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-purple-600
+                        focus:border-purple-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400
+                            dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500"
             />
         </div>
         
