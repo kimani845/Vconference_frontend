@@ -80,7 +80,8 @@ const Register = (props) => {
             >
             <div>
                 <div className="mb-2 block">
-                <label htmlFor="name" className="text-sm font-medium required">
+                <label htmlFor="name"
+                className="text-sm font-medium required">
                     Name
                 </label>
                 </div>

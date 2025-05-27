@@ -66,7 +66,8 @@ export default function Login({ isLoggedIn, setIsLoggedIn, setToken, setName }) 
 
         {/* Email Field */}
         <div className="mb-2 block">
-            <label htmlFor="email" className="text-sm font-medium required">
+            <label htmlFor="email"
+            className="text-sm font-medium required">
                 Your Email  <span className="text-red-500">*</span>
 
             </label>
@@ -91,7 +92,7 @@ export default function Login({ isLoggedIn, setIsLoggedIn, setToken, setName }) 
                 Password  
             </label>
             <div className="mt-1 relative">
-            <Input
+            <input
             id="Password" 
             name="password"
             type={passwordShown ? "text" : "password"}
