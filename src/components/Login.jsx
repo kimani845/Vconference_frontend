@@ -93,7 +93,7 @@ export default function Login({ isLoggedIn, setIsLoggedIn, setToken, setName }) 
             </label>
             <div className="mt-1 relative">
             <input
-            id="Password" 
+            id="password" 
             name="password"
             type={passwordShown ? "text" : "password"}
             autoComplete='current-password'
@@ -103,22 +103,24 @@ export default function Login({ isLoggedIn, setIsLoggedIn, setToken, setName }) 
             onChange={(e) => setPassword(e.target.value)}
             onBlur={() => handleBlur("password")}
             className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-purple-600
-                        focus:border-purple-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400
-                            dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500"
+                    focus:border-purple-600 block w-full p-2.5 pr-12 
+                    dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400
+                    dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500"
             />
         </div>
         
           {/*  Password toggle button  */}
             <button
             type="button"
-            className="absolute top-70 right-70 pr-3 flex items-center 
-            cursor-pointer justify-center"
+            className="absolute inset-y-0 right-3 flex items-center text-gray-500 dark:text-gray-300"
             onClick={togglePasswordVisibility}
+            tabIndex={-1} //  prevent tab stop
+
             >
             {passwordShown ? (
-                <EyeSlashIcon className="w-6 h-7" />
+                <EyeSlashIcon className="w-5 h-5" />
             ) : (
-                <EyeIcon className="w-6 h-7" />
+                <EyeIcon className="w-5 h-5" />
             )}
             </button>
         </div>
