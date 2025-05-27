@@ -110,7 +110,7 @@ export default function Login({ isLoggedIn, setIsLoggedIn, setToken, setName }) 
           {/*  Password toggle button  */}
             <button
             type="button"
-            className="absolute top-6 right-0 pr-3 flex items-center 
+            className="absolute top-70 right-70 pr-3 flex items-center 
             cursor-pointer justify-center"
             onClick={togglePasswordVisibility}
             >
