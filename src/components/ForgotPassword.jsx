@@ -2,12 +2,11 @@
 // import React from 'react';
 // import { useEffect } from 'react';
 import React, { useState} from 'react';
-import { Link } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { toast } from 'react-toastify'; // make sure you've installed react-toastify
 import 'react-toastify/dist/ReactToastify.css'; // default style
-import {  Input, Button } from "@material-tailwind/react";
+import {  Input } from "@material-tailwind/react";
 
 
 
@@ -15,6 +14,7 @@ const ForgotPassword = (props) => {
     const API_BASE = import.meta.env.VITE_BACKEND_URL;
     const { email, setEmail } = props;
     const navigate = useNavigate();
+    const [linkSent, setLinkSent ] = useState(false); //state to show configuration message
 
     const handleForgotPassword = async (ev) => {
         ev.preventDefault();
@@ -28,9 +28,9 @@ const ForgotPassword = (props) => {
 
             if (data.success === true) {
                 toast.success(data.message);
-                // setIsLoggedIn(true);
                 setEmail(data.email); // set email in state. But this is optional but redudant
-                navigate("/ResetPassword");
+                setLinkSent(true); // shows confirmation message
+                setTimeout(()=>navigate("/ResetPassword"),2000 ); // a small delay before redirect
             } else {
                 toast.error(data.message);
             }
@@ -41,24 +41,26 @@ const ForgotPassword = (props) => {
     };
 
     return (
-            <section className="bg-gray-500 flex h-screen items-center justify-center">
+    <section className="bg-gray-100 flex h-screen items-center justify-center min-h-screen px-4">
 
-    <div className="flex h-screen items-center justify-center">
-        <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-xl xl:p-0
-            dark:bg-gray-800 dark:border-gray-700 ">
-        <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
-            <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl
-                dark:text-white text-center text-[18px]">
-            Enter Your Email
+    <div className="w-full max-w-xl bg-white rounded-xl shadow dark:border dark:bg-gray-800 dark:border-gray-700">
+        {/* <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-xl xl:p-0
+            dark:bg-gray-800 dark:border-gray-700 "> */}
+        <div className="p-10 space-y-6">
+            <h1 className="text-2xl font-bold leading-tight tracking-tight text-center text-gray-900 dark:text-white">
+            Enter Your Reset Email
             </h1>
       {/* Forgot password form content */}
-    <form   className="space-y-4 md:space-y- rounded-x1 p-8 w-full max-w-md col-md-12"
+    <form   className="space-y-6 w-full"
             action="POST"
             onSubmit={handleForgotPassword}
         >
         
-            <div className="mb-2 block">
-                <label htmlFor="email" className="text-sm font-medium required">
+            <div className="mb-2">
+                <label 
+                htmlFor="email" 
+                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                    
                     Enter the email you registered with 
                 </label>
                 <Input
@@ -75,20 +77,29 @@ const ForgotPassword = (props) => {
                 required
                 />
             </div>
+
+            {linkSent && (
+                <p className = "text-green-600 text-sm font-medium">
+
+                    A reset link has been sent to the email you registered with
+                </p>
+            )
+            
+            }
                 <button
                             type="submit"
                             className="w-full bg-purple-600 text-white py-2 px-4 rounded-lg hover:bg-purple-700 transition"
                         >
                             Send Reset Link
-                        </button>
+                </button>
             </form>
             </div>
         </div>
     
-        </div>
-        </section>
+        {/* </div> */}
+    </section>
     
-    )
+    );
 };
 
 
