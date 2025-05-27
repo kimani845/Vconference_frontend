@@ -107,7 +107,6 @@ export default function Login({ isLoggedIn, setIsLoggedIn, setToken, setName }) 
                     dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400
                     dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500"
             />
-        </div>
         
           {/*  Password toggle button  */}
             <button
@@ -124,6 +123,8 @@ export default function Login({ isLoggedIn, setIsLoggedIn, setToken, setName }) 
             )}
             </button>
         </div>
+                </div>
+
 
         {/* Submit Button */}
         <Button type="submit" color="gray" size="lg" fullWidth className="w-full bg-purple-600 text-white py-2 px-4 rounded-lg hover:bg-purple-700 transition">
