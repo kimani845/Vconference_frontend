@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { toast } from 'react-toastify'; // make sure you've installed react-toastify
 import 'react-toastify/dist/ReactToastify.css'; // default style
-import {  Input } from "@material-tailwind/react";
+// import {  Input } from "@material-tailwind/react";
 
 // Handling the Forgot password logic
 
@@ -57,7 +57,7 @@ const ForgotPassword = (props) => {
             <div className="mb-2">
                 <label 
                 htmlFor="email" 
-                className="block mb-2 text-sm   font-medium text-gray-900 dark:text-white">
+                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                     
                     Enter the email you registered with 
                 </label>
