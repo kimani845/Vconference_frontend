@@ -63,18 +63,18 @@ const ForgotPassword = (props) => {
                     
                     Enter the email you registered with 
                 </label>
-                <Input
-                label="Email"
+                <input
                 id="email"
                 type="email"
                 name="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="kimaniwangai@gmail.com"
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500
+                className="bg-gray-50 border-r-4 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500
                             focus:border-purple-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400
                                 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500"
                 required
+                crossOrigin="" // suppresses warning
                 />
             </div>
 
