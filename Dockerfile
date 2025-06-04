@@ -1,3 +1,5 @@
+#  Docker file for the project
+
 FROM node:16-alpine
 WORKDIR /the/workdir/Vconference_frontend
 

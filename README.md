@@ -10,3 +10,12 @@ Currently, two official plugins are available:
 ## Expanding the ESLint configuration
 
 If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+
+
+# Dockerisation
+ The code in the Docker file will do the following:
+ - Start with a base image, it will set the  working directory to /the/workdir/Vconference_frontend where our code shall reside.
+ - Copy the package.json and package-lock.json  files into the working directory.
+ - Install the dependencies specified in the package.json file.
+ - Copy the rest of the code into the working directory.
+ - Set the server starting command with CMD 
